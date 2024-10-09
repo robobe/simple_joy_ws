@@ -47,7 +47,9 @@ class ZenohBackend:
                 log.info("Zenoh session created")
                 break
             except Exception:
-                log.error("zenoh session open failed try again", exc_info=True)
+                log.error(
+                    "zenoh session open failed try again", exc_info=True
+                )
                 time.sleep(2)
 
     def pub(self, joy_state: JoystickData):
@@ -128,7 +130,9 @@ if __name__ == "__main__":
         "--port", default=35407, type=int, help="server port", required=False
     )
     parser.add_argument(
-        "--joy_type", default="logitech-xbox", help="logitech-xbox, logitech-extreme-3d"
+        "--joy_type",
+        default="logitech-extreme-3d",
+        help="logitech-xbox, logitech-extreme-3d",
     )
     args = parser.parse_args()
 
