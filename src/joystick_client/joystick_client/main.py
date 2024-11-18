@@ -9,6 +9,7 @@ from threading import Thread
 from typing import List
 
 import zenoh
+import json5
 from linux_joystick import AxisEvent, ButtonEvent
 from linux_joystick import Joystick as JoySimple
 from pycdr2 import IdlStruct
@@ -28,7 +29,7 @@ class JoystickData(IdlStruct, typename="JoystickData"):
 
 class ZenohBackend:
     def __init__(self, ip, port) -> None:
-        self.cfg = zenoh.Config.from_obj(self.build_config(ip, port))
+        self.cfg = zenoh.Config.from_json5(json5.dumps(self.build_config(ip, port)))
         self.__session = None
 
     def build_config(self, ip, port):
