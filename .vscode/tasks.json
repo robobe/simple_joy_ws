@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "colcon",
+        "type": "shell",
+        "command": "colcon build",
+        "problemMatcher": [],
+        "options": {
+          "cwd": "${workspaceFolder}",
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+      },
+      {
+        "label": "build rome_interfaces",
+        "type": "shell",
+        "command": "bloom-generate rosdebian && ./debian_scripts/patch_rule.sh && ./debian_scripts/patch_compat.sh && fakeroot debian/rules binary",
+        "options": {
+          "cwd": "${workspaceFolder}/src/rome_interfaces",
+        }
+      }
+      ,
+      {
+        "label": "clean",
+        "type": "shell",
+        "command": "./debian_scripts/clean.sh",
+        "options": {
+          "cwd": "${workspaceFolder}/src/rome_interfaces",
+        }
+      }
+    ]
+  }

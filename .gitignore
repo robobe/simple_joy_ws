@@ -11,3 +11,8 @@ mav.tlog*
 archives
 patches
 callgrind*
+deb/
+debian/
+*.deb
+*.ddeb
+.obj*-linux-gnu
